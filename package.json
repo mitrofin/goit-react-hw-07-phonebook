@@ -1,12 +1,7 @@
 {
-  "name": "goit-react-hw06-phonebook",
+  "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
-  "author": {
-    "name": "Artem Mytrofanov",
-    "email": "mitrofin@gmail.com"
-  },
-  
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.14.1",
