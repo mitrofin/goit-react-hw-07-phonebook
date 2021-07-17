@@ -4,6 +4,11 @@ import ContactForm from './components/ContactForm/ContactForm';
 import Filter from './components/Filter/Filter';
 import ContactList from './components/ContactList/ContactList';
 import styles from './transitionStyles/app.module.scss';
+import phonebookOperations from './redux/phoneBook/phoneBook-operations';
+import {
+  getAllContacts,
+  getLoading,
+} from './redux/phoneBook/phoneBook-selectors';
 const App = ({ contacts }) => {
   return (
     <div>
@@ -21,7 +26,11 @@ const App = ({ contacts }) => {
 };
 
 const mapStateToProps = state => ({
-  contacts: state.contacts.items,
+  contacts: getAllContacts(state),
+  isLoading: getLoading(state),
+});
+const mapDispatchToProps = dispatch => ({
+  fetchContacts: () => dispatch(phonebookOperations.fetchContacts()),
 });
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
