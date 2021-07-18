@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import phoneBookActions from '../../redux/phoneBook/phoneBook-actions';
+import { changeFilter } from '../../redux/phoneBook/phoneBook-actions';
 import styles from './Filter.module.scss';
 import filterTransitionStyles from '../../transitionStyles/filterTransition.module.scss';
+import {
+  getFilter,
+  getContactsLength,
+} from '../../redux/phoneBook/phoneBook-selectors';
 
 function Filter({ initialValue, contactsLength, onFilterChange }) {
   return (
@@ -30,12 +34,12 @@ function Filter({ initialValue, contactsLength, onFilterChange }) {
 }
 
 const mapStateToProps = state => ({
-  initialValue: state.contacts.filter,
-  contactsLength: state.contacts.items.length,
+  initialValue: getFilter(state),
+  contactsLength: getContactsLength(state),
 });
 
 const mapDispatchToProps = {
-  onFilterChange: phoneBookActions.changeFilter,
+  onFilterChange: changeFilter,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

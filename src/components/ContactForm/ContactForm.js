@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
-import phoneBookActions from '../../redux/phoneBook/phoneBook-actions';
+import phonebookOperations from '../../redux/phoneBook/phoneBook-operations';
 import styles from './ContactForm.module.scss';
 import Notification from '../Notification/Notification';
-
-uuidv4();
+import {
+  getErrorMessage,
+  getAllContacts,
+} from '../../redux/phoneBook/phoneBook-selectors';
 
 const validationSchema = yup.object({
   name: yup.string().required("Enter contact's name"),
@@ -39,8 +41,12 @@ class ContactForm extends Component {
     return (
       <>
         <Notification
-          isContactExists={isContactExists}
+          notificationInit={isContactExists}
           message="This contact already exists in your phonebook."
+        />
+        <Notification
+          notificationInit={Boolean(this.props.errorMessage)}
+          message={this.props.errorMessage}
         />
         <Formik
           initialValues={{ name: '', number: '' }}
@@ -86,11 +92,13 @@ class ContactForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  contacts: state.contacts.items,
+  contacts: getAllContacts(state),
+  errorMessage: getErrorMessage(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  addContact: contactObj => dispatch(phoneBookActions.addContact(contactObj)),
+  addContact: contactObj =>
+    dispatch(phonebookOperations.addContact(contactObj)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

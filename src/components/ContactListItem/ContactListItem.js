@@ -1,19 +1,20 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import phoneBookActions from '../../redux/phoneBook/phoneBook-actions';
+import phonebookOperations from '../../redux/phoneBook/phoneBook-operations';
 import styles from './ContactListItem.module.scss';
 
 const ContactListItem = ({ idx, contact, onDeleteButtonClick }) => {
+  const { id, name, number } = contact;
   return (
-    <li key={contact.id} className={idx % 2 === 0 ? styles.even : styles.odd}>
+    <li key={id} className={idx % 2 === 0 ? styles.even : styles.odd}>
       <span>
-        {contact.name}: {contact.number}
+        {name}: {number}
       </span>
       <button
         type="button"
         id={contact.id}
         className={styles.deleteButton}
-        onClick={e => onDeleteButtonClick(e.target.id)}
+        onClick={() => onDeleteButtonClick(id)}
       >
         Delete
       </button>
@@ -22,7 +23,7 @@ const ContactListItem = ({ idx, contact, onDeleteButtonClick }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteButtonClick: id => dispatch(phoneBookActions.deleteContact(id)),
+  onDeleteButtonClick: id => dispatch(phonebookOperations.deleteContact(id)),
 });
 
 export default connect(null, mapDispatchToProps)(ContactListItem);

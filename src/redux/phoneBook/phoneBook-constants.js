@@ -1,5 +1,28 @@
-const DELETE = 'phoneBook/Delete';
-const ADD = 'phoneBook/Add';
-const CHANGE_FILTER = 'phoneBook/ChangeFilter';
+const fetchRequest = 'phonebook/FetchRequest';
+const fetchSuccess = 'phonebook/FetchSuccess';
+const fetchError = 'phonebook/FetchError';
 
-export default { DELETE, ADD, CHANGE_FILTER };
+const deleteRequest = 'phonebook/DeleteRequest';
+const deleteSuccess = 'phonebook/DeleteSuccess';
+const deleteError = 'phonebook/DeleteError';
+
+const addRequest = 'phonebook/AddRequest';
+const addSuccess = 'phonebook/AddSuccess';
+const addError = 'phonebook/AddError';
+
+const changeFilter = 'phonebook/ChangeFilter';
+const errorRemove = 'phonebook/removeError';
+
+export default {
+  deleteError,
+  deleteSuccess,
+  deleteRequest,
+  addRequest,
+  addSuccess,
+  addError,
+  changeFilter,
+  errorRemove,
+  fetchRequest,
+  fetchSuccess,
+  fetchError,
+};

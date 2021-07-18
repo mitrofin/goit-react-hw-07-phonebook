@@ -1,3 +1,14 @@
 {
-  "contacts": []
+  "contacts": [
+    {
+      "name": "timon blur",
+      "number": "0939393999",
+      "id": "a4e81e98-c188-4258-9995-c657b0052da7"
+    },
+    {
+      "name": "benya",
+      "number": "0939393933",
+      "id": "1dfa8c5b-f0bc-412d-80bb-d127d61a1697"
+    }
+  ]
 }
